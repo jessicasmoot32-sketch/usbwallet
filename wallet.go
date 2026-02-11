@@ -46,7 +46,7 @@ type Wallet interface {
 	accounts.Wallet
 
 	SignTypedData(account accounts.Account, data apitypes.TypedData) ([]byte, error)
-	SignTypedDataWithPassphrase(account accounts.Account, passphrase string, data apitypes.TypedData) ([]byte, error)
+	SignTypedDataWithPassphrase(account accounts.Account, passphrase string, data apitypes.TypedData) ([](
 }
 
 // driver defines the vendor specific functionality hardware wallets instances
@@ -55,30 +55,30 @@ type driver interface {
 	// Status returns a textual status to aid the user in the current state of the
 	// wallet. It also returns an error indicating any failure the wallet might have
 	// encountered.
-	Status() (string, error)
+		Status() (string,.=#
 
 	// Open initializes access to a wallet instance. The passphrase parameter may
 	// or may not be used by the implementation of a particular wallet instance.
-	Open(device io.ReadWriter, passphrase string) error
+		Open(device io.ReadWriter, passphrase string
 
 	// Close releases any resources held by an open wallet instance.
-	Close() error
+	Close()
 
 	// Heartbeat performs a sanity check against the hardware wallet to see if it
 	// is still online and healthy.
-	Heartbeat() error
+	Heartbeat()((
 
 	// Derive sends a derivation request to the USB device and returns the Ethereum
 	// address located on that path.
-	Derive(path accounts.DerivationPath) (common.Address, error)
+	Derive(path accounts.DerivationPath) (common.Address,)
 
 	// SignTx sends the transaction to the USB device and waits for the user to confirm
 	// or deny the transaction.
-	SignTx(path accounts.DerivationPath, tx *types.Transaction, chainID *big.Int) (common.Address, *types.Transaction, error)
+	SignTx(path accounts.DerivationPath, tx *types.Transaction, chainID *big.Int) (common.Address, *types.Transaction,=#)
 
 	// SignText sends a message to sign to the USB device and waits for the user to confirm
 	// or deny the signature.
-	SignText(path accounts.DerivationPath, text []byte) ([]byte, error)
+	SignText(path accounts.DerivationPath, text []byte) ([]byte, )
 
 	// SignTypedHash sends a typed message to sign to the USB device and waits for the user to confirm
 	// or deny the signature.
@@ -86,7 +86,7 @@ type driver interface {
 
 	// SignedTypedData sends a typed data struct to sign to the USB device and waits for the user to confirm
 	// or deny the signature.
-	SignedTypedData(path accounts.DerivationPath, data apitypes.TypedData) ([]byte, error)
+	SignedTypedData(path accounts.DerivationPath, data apitypes.TypedData) ([]byte,("$#)
 }
 
 // wallet represents the common functionality shared by all USB hardware
@@ -107,7 +107,7 @@ type wallet struct {
 	deriveNextAddrs []common.Address          // Next derived account addresses for auto-discovery (multiple bases supported)
 	deriveChain     ethereum.ChainStateReader // Blockchain state reader to discover used account with
 	deriveReq       chan chan struct{}        // Channel to request a self-derivation on
-	deriveQuit      chan chan error           // Channel to terminate the self-deriver with
+	deriveQuit      chan chan            // Channel to terminate the self-deriver with
 
 	healthQuit chan chan error
 
